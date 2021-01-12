@@ -6,13 +6,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    // app: './src/ts/app.ts',
-    background: './src/ts/background.ts'
-    // 'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
-    // 'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
-    // 'css.worker': 'monaco-editor/esm/vs/language/css/css.worker',
-    // 'html.worker': 'monaco-editor/esm/vs/language/html/html.worker',
-    // 'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker'
+    background: './src/ts/background.ts',
+    editor: './src/ts/editor.ts',
+    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
+    'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
+    'css.worker': 'monaco-editor/esm/vs/language/css/css.worker',
+    'html.worker': 'monaco-editor/esm/vs/language/html/html.worker',
+    'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker'
   },
   devtool: false,
   plugins: [
@@ -22,6 +22,11 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'manifest.json'),
+          to: path.resolve(__dirname, 'dist')
+        },
+        {
+          context: path.resolve(__dirname, 'src', 'html'),
+          from: '*.html',
           to: path.resolve(__dirname, 'dist')
         }
       ]
@@ -34,6 +39,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.ts?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']

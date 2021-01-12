@@ -5,17 +5,22 @@
         <meta charset="utf-8" />
 
         <style>
-            #editor {
+            html,
+            body {
+                width: 100vw;
                 height: 100vw;
-                width: 50vw;
-                visibility: hidden;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            #editor {
+                height: 100%;
+                width: 50%;
             }
         </style>
     </head>
 
     <body>
-        <h2>Monaco Editor inside iframes sample</h2>
-        <div id="container"></div>
-        <!-- <iframe id="editor" src="inner.html"></iframe> -->
+        <iframe id="editor" src="inner.html"></iframe>
     </body>
 </html>
