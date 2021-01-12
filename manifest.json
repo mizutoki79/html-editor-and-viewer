@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "minimal-html-editor",
+    "version": "0.0.1",
+    "author": "mizutoki79",
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
+    "background": {
+        "scripts": ["background.bundle.js"],
+        "persistent": false
+    },
+    "browser_action": {
+        "name": "minimal-html-editor"
+    }
+}
