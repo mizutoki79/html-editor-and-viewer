@@ -1,6 +1,9 @@
 chrome.browserAction.onClicked.addListener(() => {
     const url = chrome.extension.getURL('index.html');
-    chrome.tabs.create({ url: url }, tab => {
+    const createProps: chrome.tabs.CreateProperties = {
+        url,
+    };
+    chrome.tabs.create(createProps, tab => {
         tab.active = true;
     });
 });
