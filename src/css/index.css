@@ -6,6 +6,12 @@ body {
     padding: 0;
     overflow: hidden;
 }
+.frameContainer {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 #editor,
 #viewer {
     width: 50%;
