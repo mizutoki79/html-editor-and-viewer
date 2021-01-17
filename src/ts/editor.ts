@@ -7,12 +7,16 @@ const saveDocument = (editor: monaco.editor.ICodeEditor) => {
     chrome.storage.local.set({ index: doc });
 };
 
+const reloadViewer = () => {
+    const postMessage: MessageFromIframeToParent = {
+        message: 'reload',
+    };
+    window.parent.postMessage(postMessage, '*');
+};
+
 const saveAndRender = (editor: monaco.editor.ICodeEditor) => {
-    console.log('save and render');
     saveDocument(editor);
-    chrome.storage.local.get(['index'], items => {
-        console.log(items);
-    });
+    reloadViewer();
 };
 
 const extendCommandPalette = (editor: monaco.editor.IStandaloneCodeEditor) => {
