@@ -1,3 +1,3 @@
-# minimal-html-editor
+# html-editor-and-viewer
 
 chrome extension

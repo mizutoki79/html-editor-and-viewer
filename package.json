@@ -1,5 +1,5 @@
 {
-  "name": "minimal-html-editor",
+  "name": "html-editor-and-viewer",
   "version": "0.0.1",
   "description": "HTML, JavaScript editor in browser",
   "main": "index.js",
