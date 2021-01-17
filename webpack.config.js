@@ -2,12 +2,15 @@ const path = require('path')
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   entry: {
     background: './src/ts/background.ts',
     editor: './src/ts/editor.ts',
+    viewer: './src/ts/viewer.ts',
+    index: './src/ts/index.ts',
     'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
     'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
     'css.worker': 'monaco-editor/esm/vs/language/css/css.worker',
@@ -30,6 +33,18 @@ module.exports = {
           to: path.resolve(__dirname, 'dist')
         }
       ]
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'editor.html',
+      template: 'src/ejs/inner.ejs',
+      inject: false,
+      templateParameters: { scriptName: 'editor.bundle.js' }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'viewer.html',
+      template: 'src/ejs/inner.ejs',
+      inject: false,
+      templateParameters: { scriptName: 'viewer.bundle.js' }
     })
   ],
   output: {

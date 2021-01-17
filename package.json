@@ -32,6 +32,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.1",
     "monaco-editor-webpack-plugin": "^2.1.0",
     "prettier": "^2.2.1",
     "prettier-config-standard": "^1.0.1",
