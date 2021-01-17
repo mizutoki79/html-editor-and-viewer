@@ -24,7 +24,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'manifest.json'),
+          context: path.resolve(__dirname, 'src', 'assets'),
+          from: 'manifest.json',
           to: path.resolve(__dirname, 'dist')
         },
         {
