@@ -31,6 +31,11 @@ module.exports = {
           context: path.resolve(__dirname, 'src', 'html'),
           from: '*.html',
           to: path.resolve(__dirname, 'dist')
+        },
+        {
+          context: path.resolve(__dirname, 'src', 'css'),
+          from: '*.css',
+          to: path.resolve(__dirname, 'dist')
         }
       ]
     }),
