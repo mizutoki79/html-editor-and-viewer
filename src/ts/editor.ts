@@ -3,10 +3,10 @@ import * as monaco from 'monaco-editor';
 const prefersDarkTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const saveDocument = (document: string) => {
-    chrome.storage.local.set({ index: document });
+    chrome.storage.sync.set({ html: document });
 };
 
-const reloadViewer = (document: string) => {
+const renderViewer = (document: string) => {
     const postMessage: MessageFromIframeToParent = {
         message: 'reload',
         content: document,
@@ -17,7 +17,7 @@ const reloadViewer = (document: string) => {
 const saveAndRender = (editor: monaco.editor.ICodeEditor) => {
     const document = editor.getValue({ preserveBOM: false, lineEnding: '\n' });
     saveDocument(document);
-    reloadViewer(document);
+    renderViewer(document);
 };
 
 const extendCommandPalette = (editor: monaco.editor.IStandaloneCodeEditor) => {
@@ -39,12 +39,15 @@ const createEditor = (id: string, options: monaco.editor.IStandaloneEditorConstr
 };
 
 const main = () => {
-    const options: monaco.editor.IStandaloneEditorConstructionOptions = {
-        value: 'editor',
-        language: 'html',
-        theme: prefersDarkTheme ? 'vs-dark' : 'vs',
-    };
-    createEditor('container', options);
+    chrome.storage.sync.get(['html'], items => {
+        const options: monaco.editor.IStandaloneEditorConstructionOptions = {
+            value: items.html ?? '<strong>something</strong> <font color="red">code</font>',
+            language: 'html',
+            theme: prefersDarkTheme ? 'vs-dark' : 'vs',
+        };
+        createEditor('container', options);
+        renderViewer(options.value);
+    });
 };
 
 main();
