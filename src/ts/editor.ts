@@ -24,7 +24,7 @@ const extendCommandPalette = (editor: monaco.editor.IStandaloneCodeEditor) => {
     const descriptor: monaco.editor.IActionDescriptor = {
         id: 'saveAndRender',
         label: 'Save and Render',
-        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S],
         contextMenuGroupId: '0',
         contextMenuOrder: 0,
         run: editor => saveAndRender(editor),
