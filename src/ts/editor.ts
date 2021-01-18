@@ -2,21 +2,22 @@ import * as monaco from 'monaco-editor';
 
 const prefersDarkTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-const saveDocument = (editor: monaco.editor.ICodeEditor) => {
-    const doc = editor.getValue({ preserveBOM: false, lineEnding: '\n' });
-    chrome.storage.local.set({ index: doc });
+const saveDocument = (document: string) => {
+    chrome.storage.local.set({ index: document });
 };
 
-const reloadViewer = () => {
+const reloadViewer = (document: string) => {
     const postMessage: MessageFromIframeToParent = {
         message: 'reload',
+        content: document,
     };
     window.parent.postMessage(postMessage, '*');
 };
 
 const saveAndRender = (editor: monaco.editor.ICodeEditor) => {
-    saveDocument(editor);
-    reloadViewer();
+    const document = editor.getValue({ preserveBOM: false, lineEnding: '\n' });
+    saveDocument(document);
+    reloadViewer(document);
 };
 
 const extendCommandPalette = (editor: monaco.editor.IStandaloneCodeEditor) => {
@@ -35,9 +36,6 @@ const createEditor = (id: string, options: monaco.editor.IStandaloneEditorConstr
     const editor = monaco.editor.create(document.getElementById(id), options);
     extendCommandPalette(editor);
     window.onresize = () => editor.layout();
-    editor.onDidChangeCursorSelection(() => {
-        saveDocument(editor);
-    });
 };
 
 const main = () => {
