@@ -6,15 +6,54 @@ body {
     padding: 0;
     overflow: hidden;
 }
-.frameContainer {
+#editor-tabs {
+    display: table;
+    /* justify-content: left;
+    align-items: flex-end; */
+    height: 20px;
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+.tab {
+    text-decoration: none;
+    padding: 0 5px;
+    background-color: #2d2d2d;
+    width: 50px;
+    height: 30px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.tab > a {
+    color: #ffffff80;
+    text-decoration: none;
+}
+.tab.active {
+    background-color: #1e1e1e;
+}
+.tab.active > a {
+    color: #ffffff
+}
+.frame-containers {
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
-#editor,
-#viewer {
+.frame-container {
     width: 50%;
     height: 100%;
+}
+#editor,
+#viewer {
+    width: 100%;
+    height: 100%;
+    border-width: 1px 0px;
+}
+#editor {
     border-width: 0px;
+}
+#viewer {
+    margin-top: 44px;
 }
