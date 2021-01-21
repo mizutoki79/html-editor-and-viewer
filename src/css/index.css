@@ -8,18 +8,16 @@ body {
 }
 #editor-tabs {
     display: table;
-    /* justify-content: left;
-    align-items: flex-end; */
     height: 20px;
     list-style: none;
     padding: 0px;
-    margin-bottom: 0px;
+    margin: 0px;
 }
 .tab {
     text-decoration: none;
     padding: 0 5px;
     background-color: #2d2d2d;
-    width: 50px;
+    width: 60px;
     height: 30px;
     display: table-cell;
     vertical-align: middle;
@@ -55,5 +53,5 @@ body {
     border-width: 0px;
 }
 #viewer {
-    margin-top: 44px;
+    margin-top: 30px;
 }
