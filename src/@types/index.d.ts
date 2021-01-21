@@ -11,4 +11,5 @@ interface EditorDataDetail {
 interface EditorData {
     html: EditorDataDetail;
     css: EditorDataDetail;
+    js: EditorDataDetail;
 }
