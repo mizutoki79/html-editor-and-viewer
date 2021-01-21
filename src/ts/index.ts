@@ -16,20 +16,17 @@ const changeTab = (selectedTabNode: HTMLElement, selectedTabId: TabId) => {
     }
 };
 
-const renderViewer = (content: string) => {
+const reloadViewer = () => {
     const viewerIframe = document.getElementById('viewer');
     if (isHTMLIFrame(viewerIframe)) {
-        const frameDoc = viewerIframe.contentWindow.document;
-        frameDoc.open();
-        frameDoc.write(content);
-        frameDoc.close();
+        viewerIframe.contentWindow.location.reload();
     }
 };
 
 const messageEventListener = (event: MessageEvent<Message>) => {
-    const { message, content } = event.data;
+    const { message } = event.data;
     if (message === 'reload') {
-        renderViewer(content);
+        reloadViewer();
     }
 };
 

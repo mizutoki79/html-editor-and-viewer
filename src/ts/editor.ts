@@ -59,18 +59,16 @@ const saveDocument = (editor: monaco.editor.ICodeEditor) => {
     }
 };
 
-const renderViewer = (document: string) => {
+const renderViewer = () => {
     const postMessage: Message = {
         message: 'reload',
-        content: document,
     };
     window.parent.postMessage(postMessage, '*');
 };
 
 const saveAndRender = (editor: monaco.editor.ICodeEditor) => {
-    const document = editor.getValue({ preserveBOM: false, lineEnding: '\n' });
     saveDocument(editor);
-    renderViewer(document);
+    renderViewer();
 };
 
 const extendCommandPalette = (editor: monaco.editor.IStandaloneCodeEditor) => {
@@ -108,7 +106,7 @@ const main = () => {
             theme: prefersDarkTheme ? 'vs-dark' : 'vs',
         };
         createEditor('container', options);
-        renderViewer(defaultHtmlValue);
+        renderViewer();
     });
 };
 

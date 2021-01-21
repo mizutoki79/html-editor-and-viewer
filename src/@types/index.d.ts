@@ -1,6 +1,6 @@
 interface Message {
     message: 'reload' | 'tab-change';
-    content: string;
+    content?: string;
 }
 
 interface EditorDataDetail {
