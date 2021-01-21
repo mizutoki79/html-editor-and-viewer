@@ -10,6 +10,6 @@ interface EditorDataDetail {
 
 interface EditorData {
     html: EditorDataDetail;
-    js: EditorDataDetail;
     css: EditorDataDetail;
+    js: EditorDataDetail;
 }

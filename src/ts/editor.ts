@@ -6,11 +6,11 @@ const editorData: EditorData = {
         state: null,
         model: null,
     },
-    js: {
+    css: {
         state: null,
         model: null,
     },
-    css: {
+    js: {
         state: null,
         model: null,
     },
@@ -20,8 +20,8 @@ const prefersDarkTheme = () => window.matchMedia('(prefers-color-scheme: dark)')
 
 const tabIdToModelId: { [key in TabId]: keyof EditorData } = {
     'html-tab': 'html',
-    'javascript-tab': 'js',
     'css-tab': 'css',
+    'javascript-tab': 'js',
 };
 
 const changeTab = (editor: monaco.editor.ICodeEditor, tabId: TabId) => {
@@ -48,13 +48,13 @@ const saveDocument = (editor: monaco.editor.ICodeEditor) => {
             editorData.html.state = currentState;
             chrome.storage.sync.set({ html: document });
             break;
-        case editorData.js.model:
-            editorData.js.state = currentState;
-            chrome.storage.sync.set({ js: document });
-            break;
         case editorData.css.model:
             editorData.css.state = currentState;
             chrome.storage.sync.set({ css: document });
+            break;
+        case editorData.js.model:
+            editorData.js.state = currentState;
+            chrome.storage.sync.set({ js: document });
             break;
     }
 };
@@ -91,14 +91,14 @@ const createEditor = (id: string, options: monaco.editor.IStandaloneEditorConstr
 };
 
 const main = () => {
-    chrome.storage.sync.get(['html', 'js', 'css'], items => {
+    chrome.storage.sync.get(['html', 'css', 'js'], items => {
         const defaultHtmlValue = items.html ?? '<strong>something</strong> <font color="red">code</font>';
         const htmlModel = monaco.editor.createModel(defaultHtmlValue, 'html');
-        const jsModel = monaco.editor.createModel(items.js ?? 'JavaScript', 'javascript');
         const cssModel = monaco.editor.createModel(items.css ?? 'css', 'css');
+        const jsModel = monaco.editor.createModel(items.js ?? 'JavaScript', 'javascript');
         editorData.html.model = htmlModel;
-        editorData.js.model = jsModel;
         editorData.css.model = cssModel;
+        editorData.js.model = jsModel;
         const options: monaco.editor.IStandaloneEditorConstructionOptions = {
             model: htmlModel,
             value: defaultHtmlValue,
