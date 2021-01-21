@@ -11,10 +11,6 @@ const editorData: EditorData = {
         state: null,
         model: null,
     },
-    js: {
-        state: null,
-        model: null,
-    },
 };
 
 const prefersDarkTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -22,7 +18,6 @@ const prefersDarkTheme = () => window.matchMedia('(prefers-color-scheme: dark)')
 const tabIdToModelId: { [key in TabId]: keyof EditorData } = {
     'html-tab': 'html',
     'css-tab': 'css',
-    'javascript-tab': 'js',
 };
 
 const changeTab = (editor: monaco.editor.ICodeEditor, tabId: TabId) => {
@@ -52,10 +47,6 @@ const saveDocument = (editor: monaco.editor.ICodeEditor) => {
         case editorData.css.model:
             editorData.css.state = currentState;
             chrome.storage.sync.set({ css: document });
-            break;
-        case editorData.js.model:
-            editorData.js.state = currentState;
-            chrome.storage.sync.set({ js: document });
             break;
     }
 };
@@ -96,10 +87,8 @@ const main = () => {
         const defaultHtmlValue = items.html ?? sampleHtml;
         const htmlModel = monaco.editor.createModel(defaultHtmlValue, 'html');
         const cssModel = monaco.editor.createModel(items.css ?? sampleCss, 'css');
-        const jsModel = monaco.editor.createModel(items.js ?? 'JavaScript', 'javascript');
         editorData.html.model = htmlModel;
         editorData.css.model = cssModel;
-        editorData.js.model = jsModel;
         const options: monaco.editor.IStandaloneEditorConstructionOptions = {
             model: htmlModel,
             value: defaultHtmlValue,
