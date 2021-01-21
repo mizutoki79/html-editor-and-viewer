@@ -5,7 +5,9 @@
     "author": "mizutoki79",
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "webNavigation",
+        "<all_urls>"
     ],
     "background": {
         "scripts": ["background.bundle.js"],
@@ -13,5 +15,7 @@
     },
     "browser_action": {
         "name": "html-editor-and-viewer"
-    }
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    "sandbox": ["index.html", "editor.html", "viewer.html"]
 }
