@@ -13,7 +13,7 @@ const editorData: EditorData = {
     },
 };
 
-const prefersDarkTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+const prefersDarkTheme = true; // () => window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const tabIdToModelId: { [key in TabId]: keyof EditorData } = {
     'html-tab': 'html',
