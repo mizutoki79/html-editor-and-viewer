@@ -6,7 +6,7 @@ const appendStyle = (style: string) => {
     document.head.append(styleElement);
 };
 
-chrome.storage.sync.get(['html', 'js', 'css'], items => {
+chrome.storage.sync.get(['html', 'css', 'js'], items => {
     const container = document.getElementById('container');
     container.insertAdjacentHTML('afterbegin', items.html ?? sampleHtml);
     appendStyle(items.css ?? sampleCss);
