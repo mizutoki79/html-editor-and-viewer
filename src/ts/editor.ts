@@ -1,5 +1,6 @@
 import * as monaco from 'monaco-editor';
 import { TabId, isTabId } from './common';
+import { sampleHtml, sampleCss } from '../assets/samples.js';
 
 const editorData: EditorData = {
     html: {
@@ -92,9 +93,9 @@ const createEditor = (id: string, options: monaco.editor.IStandaloneEditorConstr
 
 const main = () => {
     chrome.storage.sync.get(['html', 'css', 'js'], items => {
-        const defaultHtmlValue = items.html ?? '<strong>something</strong> <font color="red">code</font>';
+        const defaultHtmlValue = items.html ?? sampleHtml;
         const htmlModel = monaco.editor.createModel(defaultHtmlValue, 'html');
-        const cssModel = monaco.editor.createModel(items.css ?? 'css', 'css');
+        const cssModel = monaco.editor.createModel(items.css ?? sampleCss, 'css');
         const jsModel = monaco.editor.createModel(items.js ?? 'JavaScript', 'javascript');
         editorData.html.model = htmlModel;
         editorData.css.model = cssModel;
