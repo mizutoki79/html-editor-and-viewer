@@ -25,7 +25,7 @@ module.exports = {
       patterns: [
         {
           context: path.resolve(__dirname, 'src', 'assets'),
-          from: 'manifest.json',
+          from: '**/*',
           to: path.resolve(__dirname, 'dist')
         },
         {
