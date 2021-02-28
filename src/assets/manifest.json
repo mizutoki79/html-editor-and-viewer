@@ -4,8 +4,7 @@
     "version": "0.0.1",
     "author": "mizutoki79",
     "permissions": [
-        "storage",
-        "tabs"
+        "storage"
     ],
     "background": {
         "scripts": ["background.bundle.js"],
