@@ -1,16 +1,16 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "html-editor-and-viewer",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "author": "mizutoki79",
     "permissions": [
         "storage"
     ],
     "background": {
-        "scripts": ["background.bundle.js"],
-        "persistent": false
+        "service_worker": "serviceWorker.bundle.js",
+        "type": "module"
     },
-    "browser_action": {
+    "action": {
         "name": "html-editor-and-viewer"
     },
     "icons": {
